@@ -197,5 +197,15 @@ async function renderCard(canvas, o) {
     }
   });
 
+  // On narrow screens the 480px preview is scaled down to the column width instead of being cropped.
+  var card = $('card'), wrap = card.parentElement;
+  function fit() {
+    var k = Math.min(1, wrap.clientWidth / 480);
+    card.style.transform = k < 1 ? 'scale(' + k + ')' : '';
+    wrap.style.height = k < 1 ? Math.round(600 * k) + 'px' : '';
+  }
+  window.addEventListener('resize', fit);
+
   render();
+  fit();
 })();
