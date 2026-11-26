@@ -20,10 +20,17 @@ body{margin:0;background:#000}
 *{box-sizing:border-box}
 a{color:#ffffff}a:hover{color:#9cbcff}
 .wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 40px}
+#top{padding:56px 0 104px}
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
 .gen{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:64px;align-items:center}
 .recap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
-.partner{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center}
+#partners{padding:120px 0}
+.partner{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center;min-height:420px;padding:64px 56px 40px}
+.partner-copy{display:flex;flex-direction:column;gap:22px}
+.partner-heading{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0}
+.partner-heading span{display:inline-block;background:#fff;color:#000;font-size:48px;line-height:1;font-weight:800;text-transform:uppercase;padding:10px 22px 14px}
+.partner-name{margin:0;font-size:30px;font-weight:800;text-transform:uppercase}
+.partner-bottle{display:block;width:100%;max-width:360px;height:auto}
 .tx-red{background:#3b0505 url(assets/tx-red.webp) center/cover no-repeat}
 .tx-green{background:#0a3a12 url(assets/tx-green.webp) center/cover no-repeat}
 .torn-a{clip-path:polygon(0 14%,100% 0,97% 100%,3% 88%)}
@@ -54,11 +61,20 @@ a{color:#ffffff}a:hover{color:#9cbcff}
 }
 @media (max-width:640px){
 .wrap{padding:0 16px}
+#top{padding-bottom:56px}
+.hero-art{display:none}
 .h1{font-size:40px !important}
 .h2{font-size:34px !important}
 .meta-row{gap:10px 18px !important}
 .tag-xl{font-size:22px !important}
 .card-wrap{width:100%;max-width:480px;overflow:hidden}
+#partners{padding:48px 0 56px}
+.partner{grid-template-columns:minmax(0,1fr) minmax(72px,32%);gap:12px;min-height:0;padding:28px 18px 18px}
+.partner-copy{gap:12px}
+.partner-heading{gap:5px 8px}
+.partner-heading span{font-size:clamp(16px,4.6vw,23px);padding:6px 9px 7px}
+.partner-name{font-size:clamp(14px,4vw,19px)}
+.partner-bottle{max-width:124px}
 }
 </style>
 </head>
@@ -77,7 +93,7 @@ a{color:#ffffff}a:hover{color:#9cbcff}
 </div>
 </header>
 
-<section id="top" style="padding: 56px 0 104px;">
+<section id="top">
 <div class="wrap">
 <div class="hero">
 <div style="display: flex; flex-direction: column; gap: 32px; min-width: 0;">
@@ -203,18 +219,18 @@ a{color:#ffffff}a:hover{color:#9cbcff}
 </div>
 </section>
 
-<section id="partners" aria-labelledby="partners-title" style="padding: 120px 0;">
+<section id="partners" aria-labelledby="partners-title">
 <div class="wrap">
-<div class="tx-green shard partner" style="padding: 64px 56px 40px; min-height: 420px;">
-<div style="display: flex; flex-direction: column; gap: 22px;">
-<h2 id="partners-title" class="h2" style="margin: 0; display: flex; flex-wrap: wrap; gap: 6px 14px;">
-<span class="torn-a" style="display: inline-block; background: #ffffff; color: #000000; font-size: 48px; line-height: 1; font-weight: 800; text-transform: uppercase; padding: 10px 22px 14px; transform: rotate(-3deg);">Партнер</span>
-<span class="torn-c" style="display: inline-block; background: #ffffff; color: #000000; font-size: 48px; line-height: 1; font-weight: 800; text-transform: uppercase; padding: 10px 22px 14px; transform: rotate(2deg);">заходу</span>
+<div class="tx-green shard partner">
+<div class="partner-copy">
+<h2 id="partners-title" class="h2 partner-heading">
+<span class="torn-a" style="transform: rotate(-3deg);">Партнер</span>
+<span class="torn-c" style="transform: rotate(2deg);">заходу</span>
 </h2>
-<p style="margin: 0; font-size: 30px; font-weight: 800; text-transform: uppercase;">Моршинська</p>
+<p class="partner-name">Моршинська</p>
 </div>
 <div style="display: flex; justify-content: center;">
-<img src="assets/bottle.webp" alt="Пляшка води Моршинська" style="display: block; width: 100%; max-width: 360px; height: auto;">
+<img class="partner-bottle" src="assets/bottle.webp" alt="Пляшка води Моршинська">
 </div>
 </div>
 </div>
