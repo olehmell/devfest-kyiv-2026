@@ -20,7 +20,6 @@ body{margin:0;background:#000}
 *{box-sizing:border-box}
 a{color:#ffffff}a:hover{color:#9cbcff}
 .wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 40px}
-.nav-links{display:flex;gap:28px;flex-wrap:wrap;align-items:center}
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
 .gen{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:64px;align-items:center}
 .recap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
@@ -51,7 +50,6 @@ a{color:#ffffff}a:hover{color:#9cbcff}
 }
 @media (max-width:640px){
 .wrap{padding:0 16px}
-.nav-links{display:none}
 .h1{font-size:40px !important}
 .h2{font-size:34px !important}
 .meta-row{gap:10px 18px !important}
@@ -68,30 +66,24 @@ a{color:#ffffff}a:hover{color:#9cbcff}
 <a href="#top" aria-label="DevFest Kyiv 2026 — на початок" style="display: inline-flex; align-items: center;">
 <img src="assets/logo.svg" alt="DevFest 2026 GDG Kyiv" style="height: 52px; width: auto; display: block;">
 </a>
-<nav aria-label="Основна навігація" class="nav-links" style="font-size: 15px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;">
-<a href="#generator" style="text-decoration: none;">Картинка</a>
-<a href="#recap" style="text-decoration: none;">2025</a>
-<a href="#partners" style="text-decoration: none;">Партнери</a>
-</nav>
 <a class="btn-w torn-c" href="#generator" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; text-decoration: none;">Я йду!</a>
 </div>
 </header>
 
 <section id="top" style="padding: 56px 0 104px;">
 <div class="wrap">
-<div class="meta-row" style="display: flex; flex-wrap: wrap; gap: 12px 56px; font-size: 18px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #ffffff; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.16);">
-<span>12 грудня 2026</span>
-<span>Офлайн</span>
-<span>Київ</span>
-</div>
-<div class="hero" style="margin-top: 48px;">
+<div class="hero">
 <div style="display: flex; flex-direction: column; gap: 32px; min-width: 0;">
 <h1 class="h1" style="margin: 0; font-size: 76px; line-height: .98; font-weight: 800; letter-spacing: -.02em; text-transform: uppercase;">Технології, що змінюють інженерію</h1>
 <div style="display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: center;" aria-label="Теми конференції">
 <span class="torn-a tag-xl" style="display: inline-block; background: #ffffff; color: #000000; font-size: 30px; font-weight: 800; text-transform: uppercase; padding: 10px 26px 12px; transform: rotate(-4deg);">AI</span>
 <span class="torn-b tag-xl" style="display: inline-block; background: #ffffff; color: #000000; font-size: 30px; font-weight: 800; text-transform: uppercase; padding: 10px 26px 12px; transform: rotate(3deg);">Продукти</span>
 <span class="torn-c tag-xl" style="display: inline-block; background: #ffffff; color: #000000; font-size: 30px; font-weight: 800; text-transform: uppercase; padding: 10px 26px 12px; transform: rotate(-2deg);">Cloud</span>
-<span class="torn-a tag-xl" style="display: inline-block; background: #ffffff; color: #000000; font-size: 30px; font-weight: 800; text-transform: uppercase; padding: 10px 26px 12px; transform: rotate(2deg);">Інженерія</span>
+</div>
+<div class="meta-row" style="display: flex; flex-wrap: wrap; gap: 12px 56px; font-size: 18px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #ffffff;">
+<span>12 грудня 2026</span>
+<span>Офлайн</span>
+<span>Київ</span>
 </div>
 <p style="margin: 0; max-width: 540px; font-size: 20px; line-height: 1.55; color: #c9c7c7; font-family: 'Onest', system-ui, sans-serif;">Ідеш на DevFest Kyiv? Виклади у соц. мережі та візьми участь у розіграші мерчу!</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px;">
