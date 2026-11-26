@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Нетворкінг — DevFest Kyiv 2026</title>
+<meta name="description" content="Порахуй нові контакти в LinkedIn, відміть завдання бінго та створи картку DevFest Kyiv 2026.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="../" aria-label="DevFest Kyiv 2026 — на головну">
+      <img src="../assets/logo.svg" alt="DevFest Kyiv 2026" height="52">
+    </a>
+    <nav aria-label="Основна навігація">
+      <a class="header-link" href="./" aria-current="page">Нетворкінг</a>
+      <a class="button button-primary header-button" href="../#generator">Я йду!</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Нетворкінг</h1>
+  <div class="layout">
+    <form id="networking-form">
+      <fieldset>
+        <legend>Твоє фото</legend>
+        <div class="photo">
+          <img id="photo-preview" class="photo-preview" alt="Вибране фото" width="64" height="64" hidden>
+          <div>
+            <input id="photo" class="photo-input" name="photo" type="file" accept="image/*" aria-label="Вибрати фото" aria-describedby="photo-help" required>
+            <p id="photo-help" class="hint">Фото обробляється у твоєму браузері.</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Контакти в LinkedIn</legend>
+        <label for="connections" class="hint">Скількох людей ти додав у LinkedIn сьогодні?</label>
+        <div class="counter">
+          <button id="decrement" type="button" class="button counter-button" aria-label="Зменшити на один" disabled>−</button>
+          <input id="connections" name="connections" type="number" inputmode="numeric" min="0" max="9999" step="1" value="0" required>
+          <button id="increment" type="button" class="button counter-button" aria-label="Збільшити на один">+</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Бінго</legend>
+        <div id="bingo" class="bingo">
+          <label><input type="checkbox" name="task"><span>Знайди рекрутера</span></label>
+          <label><input type="checkbox" name="task"><span>Зроби селфі</span></label>
+          <label><input type="checkbox" name="task"><span>Знайди людину на грейд вище або нижче</span></label>
+          <label><input type="checkbox" name="task"><span>Знайди людину з твого регіону</span></label>
+          <label><input type="checkbox" name="task"><span>Знайди людину з таким самим знаком зодіаку</span></label>
+          <label><input type="checkbox" name="task"><span>Знайди людину, чиє імʼя починається на ту саму літеру, що й твоє</span></label>
+        </div>
+      </fieldset>
+
+      <button id="generate" type="submit" class="button button-primary generate" disabled>Згенерувати картку</button>
+      <p id="form-status" class="hint status" role="status"></p>
+    </form>
+
+    <section class="preview" aria-labelledby="preview-title">
+      <h2 id="preview-title">Твоя картка</h2>
+      <div id="placeholder" class="placeholder">
+        <img src="../assets/logo.svg" alt="" width="210">
+        <p>Тут зʼявиться згенерована картка.</p>
+      </div>
+      <div id="result" hidden>
+        <img id="result-image" class="card" width="1080" height="1350" alt="Твоя картка нетворкінгу DevFest Kyiv 2026">
+        <div class="result-actions">
+          <a id="download" class="button button-primary" download="devfest-kyiv-2026-networking.png">Завантажити PNG</a>
+          <button id="share" type="button" class="button" hidden>Поділитися</button>
+          <a class="button" href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">Відкрити LinkedIn</a>
+        </div>
+        <p class="hint">Додай PNG як фото до допису в LinkedIn.</p>
+        <p id="share-status" class="hint status" role="status"></p>
+      </div>
+    </section>
+  </div>
+</main>
+</body>
+</html>
