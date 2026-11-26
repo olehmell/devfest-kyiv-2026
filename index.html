@@ -43,6 +43,8 @@ a{color:#ffffff}a:hover{color:#9cbcff}
 .play{transition:transform .15s}
 .vid:hover .play{transform:scale(1.08)}
 .card-wrap{width:480px}
+.footer-links{display:flex;flex-wrap:wrap;gap:4px 24px;font-size:14px;font-weight:600}
+.footer-links a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:.24em}
 @media (max-width:1040px){
 .hero,.recap,.partner,.gen{grid-template-columns:minmax(0,1fr)}
 .hero-art{max-width:460px;margin:0 auto}
@@ -214,9 +216,16 @@ a{color:#ffffff}a:hover{color:#9cbcff}
 </section>
 
 <footer style="border-top: 1px solid rgba(255,255,255,.14); padding: 40px 0 48px;">
-<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
+<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
 <img src="assets/logo.svg" alt="DevFest 2026 GDG Kyiv" style="height: 64px; width: auto; display: block;">
 <div style="font-size: 14px; line-height: 1.6; color: #a8a6a6; font-family: 'Onest', system-ui, sans-serif;">12 грудня 2026 · Київ · Офлайн<br>Google Developer Groups Kyiv</div>
+</div>
+<nav class="footer-links" aria-label="GDG Kyiv у соцмережах">
+<a href="https://www.instagram.com/gdg_kyiv/">Instagram</a>
+<a href="https://t.me/gdgkyiv">Telegram</a>
+<a href="https://www.linkedin.com/company/gdg-kyiv">LinkedIn</a>
+</nav>
 </div>
 </footer>
 
