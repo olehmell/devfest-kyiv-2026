@@ -1,4 +1,4 @@
-import { drawNetworkingCard } from './card.js';
+import { drawNetworkingCard } from './card.js?v=2';
 
 const form = document.getElementById('networking-form');
 const photoInput = document.getElementById('photo');

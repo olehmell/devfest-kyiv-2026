@@ -21,27 +21,19 @@ function polygon(ctx, points) {
 }
 
 function drawPhoto(ctx, photo) {
-  const x = 56;
-  const y = 207;
-  const width = 968;
-  const height = 442;
-  const scale = Math.max(width / photo.naturalWidth, height / photo.naturalHeight);
-  const imageWidth = photo.naturalWidth * scale;
-  const imageHeight = photo.naturalHeight * scale;
+  const size = 450;
+  const border = 6;
+  const x = (WIDTH - size) / 2;
+  const y = 200;
+  const crop = Math.min(photo.naturalWidth, photo.naturalHeight);
+  const cropX = (photo.naturalWidth - crop) / 2;
+  const cropY = (photo.naturalHeight - crop) / 2;
 
-  ctx.save();
-  polygon(ctx, [[x, y + 36], [x + width, y], [x + width, y + height - 20], [x, y + height]]);
-  ctx.clip();
+  ctx.fillStyle = BLUE;
+  ctx.fillRect(x - border, y - border, size + 2 * border, size + 2 * border);
   ctx.fillStyle = '#161616';
-  ctx.fillRect(x, y, width, height);
-  ctx.drawImage(
-    photo,
-    x + (width - imageWidth) / 2,
-    y + (height - imageHeight) * 0.3,
-    imageWidth,
-    imageHeight,
-  );
-  ctx.restore();
+  ctx.fillRect(x, y, size, size);
+  ctx.drawImage(photo, cropX, cropY, crop, crop, x, y, size, size);
 }
 
 function wrapLabel(ctx, label, width) {
@@ -157,9 +149,6 @@ export async function drawNetworkingCard(canvas, { photo, logo, connections, tas
   const logoWidth = 186;
   ctx.drawImage(logo, 842, 31, logoWidth, logoWidth * logo.naturalHeight / logo.naturalWidth);
 
-  ctx.fillStyle = BLUE;
-  polygon(ctx, [[45, 233], [1035, 195], [1035, 644], [45, 664]]);
-  ctx.fill();
   drawPhoto(ctx, photo);
 
   ctx.fillStyle = BLUE;
