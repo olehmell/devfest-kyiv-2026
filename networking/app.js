@@ -1,11 +1,10 @@
-import { drawNetworkingCard } from './card.js?v=3';
+import { drawNetworkingCard } from './card.js?v=4';
 
 const form = document.getElementById('networking-form');
 const photoInput = document.getElementById('photo');
 const photoPreview = document.getElementById('photo-preview');
 const connections = document.getElementById('connections');
-const decrement = document.getElementById('decrement');
-const increment = document.getElementById('increment');
+const acquaintances = document.getElementById('acquaintances');
 const taskInputs = [...document.querySelectorAll('#bingo input[type="checkbox"]')];
 const generate = document.getElementById('generate');
 const formStatus = document.getElementById('form-status');
@@ -23,16 +22,26 @@ let resultUrl;
 let resultFile;
 let inputVersion = 0;
 
-function updateCounterControls() {
-  const value = connections.valueAsNumber;
-  decrement.disabled = !Number.isFinite(value) || value <= Number(connections.min);
-  increment.disabled = value >= Number(connections.max);
-}
+function setupCounter(input) {
+  const decrement = input.parentElement.querySelector('[data-step="-1"]');
+  const increment = input.parentElement.querySelector('[data-step="1"]');
 
-function changeCount(direction) {
-  if (direction > 0) connections.stepUp();
-  else connections.stepDown();
-  connections.dispatchEvent(new Event('input', { bubbles: true }));
+  function updateControls() {
+    const value = input.valueAsNumber;
+    decrement.disabled = !Number.isFinite(value) || value <= Number(input.min);
+    increment.disabled = value >= Number(input.max);
+  }
+
+  decrement.addEventListener('click', () => {
+    input.stepDown();
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  increment.addEventListener('click', () => {
+    input.stepUp();
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  input.addEventListener('input', updateControls);
+  updateControls();
 }
 
 function clearResult() {
@@ -49,11 +58,9 @@ function clearResult() {
   placeholder.hidden = false;
 }
 
-decrement.addEventListener('click', () => changeCount(-1));
-increment.addEventListener('click', () => changeCount(1));
-connections.addEventListener('input', updateCounterControls);
+setupCounter(connections);
+setupCounter(acquaintances);
 form.addEventListener('input', clearResult);
-updateCounterControls();
 generate.disabled = false;
 
 photoInput.addEventListener('change', async () => {
@@ -86,7 +93,8 @@ form.addEventListener('submit', async (event) => {
   clearResult();
 
   const version = inputVersion;
-  const count = connections.valueAsNumber;
+  const newContacts = connections.valueAsNumber;
+  const familiarFaces = acquaintances.valueAsNumber;
   const tasks = taskInputs.map((input) => ({
     label: input.labels[0].textContent.trim(),
     checked: input.checked,
@@ -97,7 +105,7 @@ form.addEventListener('submit', async (event) => {
   try {
     await Promise.all([photoPreview.decode(), logo.decode()]);
     const canvas = document.createElement('canvas');
-    await drawNetworkingCard(canvas, { photo: photoPreview, logo, connections: count, tasks });
+    await drawNetworkingCard(canvas, { photo: photoPreview, logo, connections: newContacts, acquaintances: familiarFaces, tasks });
     const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
     if (version !== inputVersion) return;
     if (!blob) throw new Error('PNG encoding failed');
@@ -105,7 +113,7 @@ form.addEventListener('submit', async (event) => {
     resultFile = new File([blob], download.download, { type: 'image/png' });
     resultUrl = URL.createObjectURL(resultFile);
     resultImage.src = resultUrl;
-    resultImage.alt = `Мій DevFest нетворкінг. Нові контакти в LinkedIn — ${count}. Бінго — ${tasks.filter(({ checked }) => checked).length} із ${tasks.length}.`;
+    resultImage.alt = `Мій DevFest нетворкінг. Нові контакти в LinkedIn — ${newContacts}. Знайомих зустрів — ${familiarFaces}. Бінго — ${tasks.filter(({ checked }) => checked).length} із ${tasks.length}.`;
     download.href = resultUrl;
     share.hidden = !navigator.canShare?.({ files: [resultFile] });
     placeholder.hidden = true;

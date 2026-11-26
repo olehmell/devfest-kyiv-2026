@@ -5,6 +5,7 @@ const WHITE = '#ffffff';
 const BLUE = '#1f5bd8';
 const FONT = 'Onest, system-ui, sans-serif';
 const TITLE = 'Мій DevFest нетворкінг';
+const numberFormat = new Intl.NumberFormat('uk-UA');
 const CELL_WIDTH = 476;
 const CELL_HEIGHT = 122;
 const CELL_GAP = 16;
@@ -122,14 +123,28 @@ function drawTask(ctx, { label, checked }, index) {
   }
 }
 
-export async function drawNetworkingCard(canvas, { photo, logo, connections, tasks }) {
+function drawCount(ctx, value, x, firstLine, secondLine) {
+  const count = numberFormat.format(value);
+  const fontSize = 108;
+  const maxWidth = 174;
+  setFont(ctx, fontSize, 900);
+  const countWidth = ctx.measureText(count).width;
+  if (countWidth > maxWidth) setFont(ctx, Math.floor(fontSize * maxWidth / countWidth), 900);
+  ctx.fillText(count, x, 744, maxWidth);
+
+  setFont(ctx, 32, 700);
+  ctx.fillText(firstLine, x + 196, 722, 242);
+  ctx.fillText(secondLine, x + 196, 764, 242);
+}
+
+export async function drawNetworkingCard(canvas, { photo, logo, connections, acquaintances, tasks }) {
   // Explicit samples load the Cyrillic subset before the first canvas render.
   const fonts = canvas.ownerDocument.fonts;
   if (fonts) {
     await Promise.allSettled([
       fonts.load('900 64px Onest', TITLE + ' 0123456789'),
       fonts.load('800 48px Onest', 'БІНГО 0123456789'),
-      fonts.load('700 34px Onest', 'Нові контакти в LinkedIn сьогодні ' + tasks.map(task => task.label).join(' ')),
+      fonts.load('700 34px Onest', 'Нові контакти в LinkedIn Знайомих зустрів ' + tasks.map(task => task.label).join(' ')),
     ]);
   }
 
@@ -153,23 +168,12 @@ export async function drawNetworkingCard(canvas, { photo, logo, connections, tas
   polygon(ctx, [[51, 678], [1026, 653], [1021, 814], [57, 814]]);
   ctx.fill();
 
-  const count = new Intl.NumberFormat('uk-UA').format(connections);
   ctx.textBaseline = 'middle';
-  ctx.fillStyle = WHITE;
-  let countSize = 136;
-  setFont(ctx, countSize, 900);
-  const countWidth = ctx.measureText(count).width;
-  if (countWidth > 331) {
-    countSize = Math.floor((countSize * 331) / countWidth);
-    setFont(ctx, countSize, 900);
-  }
-  ctx.fillText(count, 84, 744, 331);
   ctx.fillStyle = '#d7e3ff';
-  ctx.fillRect(443, 691, 3, 95);
+  ctx.fillRect(539, 691, 3, 95);
   ctx.fillStyle = WHITE;
-  setFont(ctx, 40, 700);
-  ctx.fillText('Нові контакти', 478, 717);
-  ctx.fillText('в LinkedIn сьогодні', 478, 768);
+  drawCount(ctx, connections, 84, 'Нові контакти', 'в LinkedIn');
+  drawCount(ctx, acquaintances, 568, 'Знайомих', 'зустрів');
 
   setFont(ctx, 47, 800);
   ctx.fillText('БІНГО', MARGIN, 866);

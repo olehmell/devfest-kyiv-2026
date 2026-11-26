@@ -150,6 +150,21 @@ legend, h2 {
   line-height: 1.5;
 }
 
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 24px;
+}
+
+.counters > div {
+  display: flex;
+  flex: 1 1 210px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.counters label { margin: 0; }
+
 .counter {
   display: flex;
   gap: 8px;

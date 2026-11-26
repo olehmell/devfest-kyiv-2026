@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Нетворкінг — DevFest Kyiv 2026</title>
-<meta name="description" content="Порахуй нові контакти в LinkedIn, відміть завдання бінго та створи картку DevFest Kyiv 2026.">
+<meta name="description" content="Порахуй нові контакти в LinkedIn та зустрічі зі знайомими, відміть завдання бінго й створи картку DevFest Kyiv 2026.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&amp;display=swap">
-<link rel="stylesheet" href="style.css">
-<script type="module" src="app.js?v=3"></script>
+<link rel="stylesheet" href="style.css?v=2">
+<script type="module" src="app.js?v=4"></script>
 </head>
 <body>
 <header class="site-header">
@@ -42,12 +42,24 @@
       </fieldset>
 
       <fieldset>
-        <legend>Контакти в LinkedIn</legend>
-        <label for="connections" class="hint">Скількох людей ти додав у LinkedIn сьогодні?</label>
-        <div class="counter">
-          <button id="decrement" type="button" class="button counter-button" aria-label="Зменшити на один" disabled>−</button>
-          <input id="connections" name="connections" type="number" inputmode="numeric" min="0" max="9999" step="1" value="0" required>
-          <button id="increment" type="button" class="button counter-button" aria-label="Збільшити на один">+</button>
+        <legend>Нетворкінг за сьогодні</legend>
+        <div class="counters">
+          <div>
+            <label for="connections" class="hint">Скількох нових людей ти додав у LinkedIn?</label>
+            <div class="counter">
+              <button type="button" class="button counter-button" data-step="-1" aria-label="Зменшити кількість контактів у LinkedIn" disabled>−</button>
+              <input id="connections" name="connections" type="number" inputmode="numeric" min="0" max="9999" step="1" value="0" required>
+              <button type="button" class="button counter-button" data-step="1" aria-label="Збільшити кількість контактів у LinkedIn">+</button>
+            </div>
+          </div>
+          <div>
+            <label for="acquaintances" class="hint">Скількох знайомих ти зустрів?</label>
+            <div class="counter">
+              <button type="button" class="button counter-button" data-step="-1" aria-label="Зменшити кількість зустрінутих знайомих" disabled>−</button>
+              <input id="acquaintances" name="acquaintances" type="number" inputmode="numeric" min="0" max="9999" step="1" value="0" required>
+              <button type="button" class="button counter-button" data-step="1" aria-label="Збільшити кількість зустрінутих знайомих">+</button>
+            </div>
+          </div>
         </div>
       </fieldset>
 
