@@ -4,6 +4,7 @@ const BLACK = '#000000';
 const WHITE = '#ffffff';
 const BLUE = '#1f5bd8';
 const FONT = 'Onest, system-ui, sans-serif';
+const TITLE = 'Мій DevFest нетворкінг';
 const CELL_WIDTH = 476;
 const CELL_HEIGHT = 122;
 const CELL_GAP = 16;
@@ -126,9 +127,9 @@ export async function drawNetworkingCard(canvas, { photo, logo, connections, tas
   const fonts = canvas.ownerDocument.fonts;
   if (fonts) {
     await Promise.allSettled([
-      fonts.load('900 76px Onest', 'НЕТВОРКІНГ 0123456789'),
+      fonts.load('900 64px Onest', TITLE + ' 0123456789'),
       fonts.load('800 48px Onest', 'БІНГО 0123456789'),
-      fonts.load('700 34px Onest', 'ГРУДНЯ КИЇВ Нові контакти в LinkedIn сьогодні ' + tasks.map(task => task.label).join(' ')),
+      fonts.load('700 34px Onest', 'Нові контакти в LinkedIn сьогодні ' + tasks.map(task => task.label).join(' ')),
     ]);
   }
 
@@ -140,11 +141,8 @@ export async function drawNetworkingCard(canvas, { photo, logo, connections, tas
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
   ctx.fillStyle = WHITE;
-  setFont(ctx, 76, 900);
-  ctx.fillText('НЕТВОРКІНГ', MARGIN, 120);
-  ctx.fillStyle = '#d7e3ff';
-  setFont(ctx, 30, 700);
-  ctx.fillText('12 ГРУДНЯ 2026  /  КИЇВ', MARGIN + 3, 172);
+  setFont(ctx, 64, 900);
+  ctx.fillText(TITLE, MARGIN, 125, 750);
 
   const logoWidth = 186;
   ctx.drawImage(logo, 842, 31, logoWidth, logoWidth * logo.naturalHeight / logo.naturalWidth);

@@ -1,4 +1,4 @@
-import { drawNetworkingCard } from './card.js?v=2';
+import { drawNetworkingCard } from './card.js?v=3';
 
 const form = document.getElementById('networking-form');
 const photoInput = document.getElementById('photo');
@@ -105,7 +105,7 @@ form.addEventListener('submit', async (event) => {
     resultFile = new File([blob], download.download, { type: 'image/png' });
     resultUrl = URL.createObjectURL(resultFile);
     resultImage.src = resultUrl;
-    resultImage.alt = `Нетворкінг DevFest Kyiv 2026. Нові контакти в LinkedIn — ${count}. Бінго — ${tasks.filter(({ checked }) => checked).length} із ${tasks.length}.`;
+    resultImage.alt = `Мій DevFest нетворкінг. Нові контакти в LinkedIn — ${count}. Бінго — ${tasks.filter(({ checked }) => checked).length} із ${tasks.length}.`;
     download.href = resultUrl;
     share.hidden = !navigator.canShare?.({ files: [resultFile] });
     placeholder.hidden = true;
